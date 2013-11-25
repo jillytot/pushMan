@@ -1,0 +1,17 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../../../battleborn/Assets/Prototype/Scripts/PrototypePlayer.cs">
+    <Files>
+      <File FileName="../../../../battleborn/Assets/Plugins/CustomExtensions.cs" Line="66" Column="1" />
+      <File FileName="Assets/Scripts/Adventurer.cs" Line="53" Column="42" />
+      <File FileName="Assets/Scripts/Gem.cs" Line="16" Column="1" />
+      <File FileName="Assets/Scripts/AdventurerFX.cs" Line="40" Column="4" />
+      <File FileName="Assets/Scripts/myGUI.cs" Line="13" Column="2" />
+      <File FileName="../../../../battleborn/Assets/Prototype/Scripts/PrototypePlayer.cs" Line="164" Column="11" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
