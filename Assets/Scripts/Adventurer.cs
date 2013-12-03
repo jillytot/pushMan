@@ -18,7 +18,10 @@ public class Adventurer : MonoBehaviour {
 	bool grounded = false;
 	float tileSize = 2;
 	public static bool pickAxe;
-	
+	public AudioClip getItemSFX;
+	public AudioClip getGemSFX;
+	public AudioClip unlockDoorSFX;
+
 	void Awake() {
 		body = GetComponent<Rigidbody>();
 	}
@@ -47,52 +50,40 @@ public class Adventurer : MonoBehaviour {
 		if (Physics.Raycast(transform.position, onPlatform, 10))
 			//print ("There is something below me");
 			grounded = true;
-		
-		/*Debug.DrawRay (transform.position, Vector3.forward,Color.blue,1000);
-
-		RaycastHit hit;
-		if (Physics.Raycast(transform.position, Vector3.forward, out hit , tileSize)) {
-			Debug.Log("There is something in front of me");
-			Debug.Log (hit.collider.tag);
-
-			itsLocked = hit.collider.CompareTag("Locked");
-
-			if (itsLocked) {
-				Debug.Log ("It's Locked...");
-			}
-		} 
-		 */
-		
-		//Pushman Can Jump?
-		//if(Input.GetButtonDown("Jump")) {
-			//rigidbody.AddForce(jumpVelocity, ForceMode.VelocityChange);
-		//}
 	}
 	
-
+	//Manages different collisions
 	void OnTriggerEnter (Collider other) {
 		var gem = other.GetComponent<Gem> ();
 		var key = other.GetComponent<keyScript> ();
 		var itsLocked = other.GetComponent<lockBehavior>();
 		var getTool = other.GetComponent<itemTool>();
+		var goToNextLevel = other.GetComponent<starBehavior>();
 
 		//Collect Gems
 		if (gem) {
+			audio.PlayOneShot(getGemSFX, 2.0f);
 			gemCount += gem.gemValue;
 			Destroy (gem.gameObject);
 		}
 		//get keys
 			if (key) {
+				audio.PlayOneShot(getItemSFX, 0.7F);
 				keyCount += key.keyType;
 				Destroy (key.gameObject);
 		}
 		if (itsLocked && keyCount > 0) {
+			audio.PlayOneShot(unlockDoorSFX, 0.4F);
 			keyCount -= 1;
 			Destroy (itsLocked.gameObject);
 		}
 		if (getTool) {
+			audio.PlayOneShot(getItemSFX, 0.5F);
 			pickAxe = true;
 			Destroy (getTool.gameObject);
+		}
+		if (goToNextLevel) {
+			Application.LoadLevel("testScene2");
 		}
 	}
 
