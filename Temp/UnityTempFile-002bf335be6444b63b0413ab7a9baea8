@@ -36,6 +36,7 @@
 -define:ENABLE_PROFILER
 -define:UNITY_EDITOR
 -define:UNITY_EDITOR_OSX
+'Assets/CameraFX.cs'
 'Assets/Scripts/Adventurer.cs'
 'Assets/Scripts/AdventurerFX.cs'
 'Assets/Scripts/Gem.cs'

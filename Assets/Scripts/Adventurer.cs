@@ -21,19 +21,35 @@ public class Adventurer : MonoBehaviour {
 	public AudioClip getItemSFX;
 	public AudioClip getGemSFX;
 	public AudioClip unlockDoorSFX;
+	public static float playerPosX;
+	public static float playerPosZ;
+	public static Adventurer thisPlayer;
 
 	void Awake() {
+		thisPlayer = this;
 		body = GetComponent<Rigidbody>();
+
+		playerPosX = transform.position.x;
+		print (playerPosX);
+		playerPosZ = transform.position.z;
+		print (playerPosZ);
 	}
 
 	void Start () {
 		pickAxe = false;
+
 	}
     
     // Basic Controls: Pushman goes up, down, left, and right,
 	// Pushman also rotates towards the position he is travelling.
 	
     void Update () {
+
+		playerPosX = transform.position.x;
+		print (playerPosX);
+		playerPosZ = transform.position.z;
+		print (playerPosZ);
+
 		var inputSignal = new Vector3(
 			Input.GetAxisRaw("Horizontal"),
 			0,
