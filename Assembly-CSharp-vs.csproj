@@ -67,6 +67,7 @@
      <Compile Include="Assets\Scripts\switchBehavior.cs" />
      <Compile Include="Assets\Scripts\triggerBehavior.cs" />
      <Compile Include="Assets\Scripts\wallColliderBehavior.cs" />
+     <Compile Include="Assets\trackMe.cs" />
      <None Include="Assets\Shaders\Simple.shader" />
      <None Include="Assets\Shaders\RimSharp.shader" />
      <None Include="Assets\Shaders\RimSharpAdd.shader" />

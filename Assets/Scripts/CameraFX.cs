@@ -30,9 +30,9 @@ public class CameraFX : MonoBehaviour {
 	//uses two values to control when the camera moves relative to the player's position on the screen
 	void rectRange () {
 
-		targetX = new Vector3(Adventurer.playerPosX, altitude, currentHeight);
-		targetZ = new Vector3(transform.position.x, altitude, Adventurer.playerPosZ + currentHeight);
-		targetPosition = new Vector3(Adventurer.playerPosX, altitude, Adventurer.playerPosZ + currentHeight);
+		targetX = new Vector3(trackMe.playerPosX, altitude, currentHeight);
+		targetZ = new Vector3(transform.position.x, altitude, trackMe.playerPosZ + currentHeight);
+		targetPosition = new Vector3(trackMe.playerPosX, altitude, trackMe.playerPosZ + currentHeight);
 		
 		while (Vector3.Distance(transform.position, targetX) > camRangeX) {
 			
@@ -49,7 +49,9 @@ public class CameraFX : MonoBehaviour {
 	//uses a single value for X and Z camera movement relative to the players position on the screen
 	void linearRange () {
 
-		targetPosition = new Vector3(Adventurer.playerPosX, altitude, Adventurer.playerPosZ + currentHeight);
+		targetPosition = new Vector3(trackMe.playerPosX, altitude, trackMe.playerPosZ + currentHeight);
+
+		//print (targetPosition);
 		
 		while (Vector3.Distance(transform.position, targetPosition) > cameraTollerance) {
 		
