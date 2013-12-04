@@ -3,13 +3,5 @@ using System.Collections;
 
 public class lockBehavior : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	//player currently needs to reference this class to recognize a lock.
 }

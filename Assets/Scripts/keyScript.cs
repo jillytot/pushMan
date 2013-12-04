@@ -3,15 +3,7 @@ using System.Collections;
 
 public class keyScript : MonoBehaviour {
 
+	//the type of key the player is grabbing
 	public int keyType =1;
-
-	// Use this for initialization
-	void Start () {
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

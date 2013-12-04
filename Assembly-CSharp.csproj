@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{692C6CFB-7EB4-EDE2-D7A4-242E78BE50DC}</ProjectGuid>
+	<ProjectGuid>{6CA1FFC0-2A37-54EA-2CA5-A4377F66E7FF}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -47,17 +47,25 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Adventurer.cs" />
-     <Compile Include="Assets\Scripts\AdventurerFX.cs" />
+     <Compile Include="Assets\Scripts\CameraFX.cs" />
      <Compile Include="Assets\Scripts\Gem.cs" />
      <Compile Include="Assets\Scripts\baseTile.cs" />
      <Compile Include="Assets\Scripts\characterController.cs" />
+     <Compile Include="Assets\Scripts\disableRenderer.cs" />
      <Compile Include="Assets\Scripts\itemTool.cs" />
      <Compile Include="Assets\Scripts\keyScript.cs" />
+     <Compile Include="Assets\Scripts\killMeWhen.cs" />
      <Compile Include="Assets\Scripts\levitateMe.cs" />
      <Compile Include="Assets\Scripts\lockBehavior.cs" />
+     <Compile Include="Assets\Scripts\musicManager.cs" />
      <Compile Include="Assets\Scripts\myGUI.cs" />
+     <Compile Include="Assets\Scripts\playerCollider.cs" />
      <Compile Include="Assets\Scripts\rockBehavior.cs" />
+     <Compile Include="Assets\Scripts\soundFX.cs" />
      <Compile Include="Assets\Scripts\spinMe.cs" />
+     <Compile Include="Assets\Scripts\starBehavior.cs" />
+     <Compile Include="Assets\Scripts\switchBehavior.cs" />
+     <Compile Include="Assets\Scripts\triggerBehavior.cs" />
      <Compile Include="Assets\Scripts\wallColliderBehavior.cs" />
      <None Include="Assets\Shaders\Simple.shader" />
      <None Include="Assets\Shaders\RimSharp.shader" />
