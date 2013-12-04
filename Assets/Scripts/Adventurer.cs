@@ -21,8 +21,8 @@ public class Adventurer : MonoBehaviour {
 	public AudioClip getItemSFX;
 	public AudioClip getGemSFX;
 	public AudioClip unlockDoorSFX;
-	public static float playerPosX;
-	public static float playerPosZ;
+	public static float playerPosX; //used for camera tracking
+	public static float playerPosZ; //used for camera tracking
 	public static Adventurer thisPlayer;
 
 	void Awake() {
@@ -30,9 +30,9 @@ public class Adventurer : MonoBehaviour {
 		body = GetComponent<Rigidbody>();
 
 		playerPosX = transform.position.x;
-		print (playerPosX);
+		//print (playerPosX);
 		playerPosZ = transform.position.z;
-		print (playerPosZ);
+		//print (playerPosZ);
 	}
 
 	void Start () {
@@ -46,9 +46,9 @@ public class Adventurer : MonoBehaviour {
     void Update () {
 
 		playerPosX = transform.position.x;
-		print (playerPosX);
+		//print (playerPosX);
 		playerPosZ = transform.position.z;
-		print (playerPosZ);
+		//print (playerPosZ);
 
 		var inputSignal = new Vector3(
 			Input.GetAxisRaw("Horizontal"),
@@ -75,6 +75,7 @@ public class Adventurer : MonoBehaviour {
 		var itsLocked = other.GetComponent<lockBehavior>();
 		var getTool = other.GetComponent<itemTool>();
 		var goToNextLevel = other.GetComponent<starBehavior>();
+		var hitSwitch = other.GetComponent<triggerBehavior>();
 
 		//Collect Gems
 		if (gem) {
@@ -99,7 +100,12 @@ public class Adventurer : MonoBehaviour {
 			Destroy (getTool.gameObject);
 		}
 		if (goToNextLevel) {
-			Application.LoadLevel("testScene2");
+			Application.LoadLevel(Application.loadedLevel+1);
+		}
+
+		if (hitSwitch && triggerBehavior.triggerSwitch == false) {
+			triggerBehavior.triggerSwitch = true;
+			audio.PlayOneShot(getItemSFX, 0.5F);
 		}
 	}
 

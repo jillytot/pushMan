@@ -1,15 +1,20 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Adventurer.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CameraFX.cs">
     <Files>
-      <File FileName="Assets/Scripts/rockBehavior.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Adventurer.cs" Line="84" Column="34" />
+      <File FileName="Assets/Scripts/rockBehavior.cs" Line="45" Column="6" />
+      <File FileName="Assets/Scripts/Adventurer.cs" Line="18" Column="24" />
       <File FileName="Assets/Scripts/Gem.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/AdventurerFX.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/myGUI.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/wallColliderBehavior.cs" Line="1" Column="1" />
       <File FileName="Assets/playerCollider.cs" Line="1" Column="1" />
       <File FileName="Assets/killMeWhen.cs" Line="1" Column="1" />
+      <File FileName="Assets/soundFX.cs" Line="6" Column="4" />
+      <File FileName="Assets/starBehavior.cs" Line="1" Column="1" />
+      <File FileName="Assets/musicManager.cs" Line="9" Column="38" />
+      <File FileName="Assets/CameraFX.cs" Line="7" Column="31" />
+      <File FileName="Assets/Scripts/levitateMe.cs" Line="29" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

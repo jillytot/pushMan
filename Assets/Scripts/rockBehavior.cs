@@ -7,7 +7,7 @@ public class rockBehavior : MonoBehaviour {
 	bool killChild; //Used to generate new image depending on HP or rock.
 	public GameObject[] rockGraphics; //Different children which can spawn to show the state of the rock visually. 
 	public GameObject sparks;
-	public AudioClip breakRock;
+	//public AudioClip breakRock;
 
 	// Use this for initialization
 	void Start () {
@@ -42,7 +42,7 @@ public class rockBehavior : MonoBehaviour {
 		var imHit = other.GetComponent<Adventurer>();
 
 		if (Adventurer.pickAxe == true) {
-			audio.PlayOneShot(breakRock, 0.7F);
+			//audio.PlayOneShot(breakRock, 0.7F);
 			rockHP -= 1;
 			GameObject spawnSparks = (GameObject)Instantiate(sparks,transform.position, transform.rotation);
 			destroyChild ();
