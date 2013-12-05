@@ -77,6 +77,7 @@ public class Adventurer : MonoBehaviour {
 		var getTool = other.GetComponent<itemTool>(); //I found a tool
 		var goToNextLevel = other.GetComponent<starBehavior>(); //I reached the end of the level
 		var hitSwitch = other.GetComponent<triggerBehavior>(); //I hit a switch
+		var killMe = other.GetComponent<killPushman>(); //If i touch something deadly...
 
 		//Collect Gems
 		if (gem) {
@@ -110,6 +111,12 @@ public class Adventurer : MonoBehaviour {
 		if (hitSwitch && triggerBehavior.triggerSwitch == false) {
 			triggerBehavior.triggerSwitch = true;
 			audio.PlayOneShot(getItemSFX, 0.5F);
+		}
+
+		if (killMe) {
+
+			Debug.Log ("I'm am the deaaadd....");
+			Application.LoadLevel(Application.loadedLevel);
 		}
 	}
 }

@@ -11,8 +11,14 @@ public class wallColliderBehavior : MonoBehaviour {
 	
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	void OnTriggerEnter (Collider other) {
+
+		var overLapping = other.GetComponent<baseTile>();
+
+		if (overLapping) {
+
+			print ("overlapping");
+			Destroy(this.gameObject);
+		}
 	}
 }

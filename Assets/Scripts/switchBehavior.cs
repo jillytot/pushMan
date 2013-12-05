@@ -7,7 +7,7 @@ public class switchBehavior : MonoBehaviour {
 	bool eventTriggered; //returns ture when the corresponding switch is hit
 
 	// Use this for initialization
-	void Awake () {
+	void Start () {
 
 		eventTriggered = false;
 
