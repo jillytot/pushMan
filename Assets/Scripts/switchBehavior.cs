@@ -10,20 +10,12 @@ public class switchBehavior : MonoBehaviour {
 	void Start () {
 
 		eventTriggered = false;
-
-		//What do i spawn before the switch is hit?
-		if (triggerBehavior.triggerSwitch == false) {
-			
-			(Instantiate (switchObjects[0], transform.position, transform.rotation) as GameObject).transform.parent = this.transform;
-			
-		}
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
-		//What do i spawn after the switch has been hit?
+
 		if (eventTriggered == false && triggerBehavior.triggerSwitch == true) {
 
 			destroyChild ();
@@ -41,11 +33,12 @@ public class switchBehavior : MonoBehaviour {
 
 	void showHiddenTile () {
 
-		//If the trigger has been switched on... spawn these objects in it's place.
+		//If the trigger has been switched on... disable my collider and spawn these objects in it's place.
 		if (triggerBehavior.triggerSwitch == true) {
 
 			Vector3 offsetPosition = new Vector3(transform.position.x, transform.position.y + 2.0f, transform.position.z);
-			
+
+			gameObject.collider.enabled = false;
 			(Instantiate (switchObjects[1], transform.position, transform.rotation) as GameObject).transform.parent = this.transform;
 			(Instantiate (switchObjects[2], offsetPosition, transform.rotation) as GameObject).transform.parent = this.transform;
 

@@ -35,10 +35,17 @@ public class wallColliderBehavior : MonoBehaviour {
 	void OnTriggerEnter (Collider other) {
 
 		var overLapping = other.GetComponent<baseTile>();
+		var overLappingEvent = other.GetComponent<switchBehavior>();
 
 		if (overLapping) {
 
 			print ("overlapping");
+			Destroy(this.gameObject);
+		}
+
+		if (overLappingEvent) {
+			
+			print ("overlapping Event");
 			Destroy(this.gameObject);
 		}
 	}
