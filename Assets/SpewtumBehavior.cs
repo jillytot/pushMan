@@ -7,6 +7,9 @@ public class SpewtumBehavior : MonoBehaviour {
 	public float spewSpeed = 1;
 	public float reloadTime = 1;
 	public GameObject spew;
+	public GameObject spewNoise;
+
+	public Quaternion facingDIrection = Quaternion.identity;
 
 	Vector3 north;
 	Vector3 east;
@@ -16,6 +19,9 @@ public class SpewtumBehavior : MonoBehaviour {
 	bool spewLoaded = true;
 	bool startReloading = false;
 	bool fireNorth = false;
+	bool fireSouth = false;
+	bool fireEast = false;
+	bool fireWest = false;
 	
 	// Use this for initialization
 	void Start () {
@@ -56,20 +62,89 @@ public class SpewtumBehavior : MonoBehaviour {
 
 			if (fireNorth) {
 				
-				Debug.Log("target is north");
+				Debug.Log("target is North");
+			}
+		}
+
+		if (Physics.Raycast(transform.position, south, out hit, spewRange)) {
+			
+			fireSouth = hit.collider.CompareTag("Player");
+			
+			if (fireSouth) {
+				
+				Debug.Log("target is South");
+			}
+		}
+
+		if (Physics.Raycast(transform.position, east, out hit, spewRange)) {
+			
+			fireEast = hit.collider.CompareTag("Player");
+			
+			if (fireEast) {
+				
+				Debug.Log("target is East");
+			}
+		}
+
+		if (Physics.Raycast(transform.position, west, out hit, spewRange)) {
+			
+			fireWest = hit.collider.CompareTag("Player");
+			
+			if (fireWest) {
+				
+				Debug.Log("target is West");
 			}
 		}
 	}
 
 	void spewChunk () {
 
+		var faceSouth = Quaternion.LookRotation(south);
+		var faceWest = Quaternion.LookRotation(west);
+		var faceEast = Quaternion.LookRotation(east);
+
 		if (fireNorth && spewLoaded) {
 
 			GameObject spewNorth = (GameObject)Instantiate(spew, transform.position, transform.rotation);
+			GameObject spewAudio = (GameObject)Instantiate(spewNoise, transform.position, transform.rotation);
+
 			Debug.Log ("Fire");
 			spewLoaded = false;
 			startReloading = true;
 			fireNorth = false;
+		}
+
+		if (fireSouth && spewLoaded) {
+			
+			GameObject spewSouth = (GameObject)Instantiate(spew, transform.position, faceSouth);
+			GameObject spewAudio = (GameObject)Instantiate(spewNoise, transform.position, transform.rotation);
+			
+			Debug.Log ("Fire");
+			spewLoaded = false;
+			startReloading = true;
+			fireSouth = false;
+		}
+
+		if (fireWest && spewLoaded) {
+			
+			GameObject spewWest = (GameObject)Instantiate(spew, transform.position, faceWest);
+			GameObject spewAudio = (GameObject)Instantiate(spewNoise, transform.position, transform.rotation);
+			
+			Debug.Log ("Fire");
+			spewLoaded = false;
+			startReloading = true;
+			fireWest = false;
+		}
+
+		if (fireEast && spewLoaded) {
+			
+			GameObject spewEast = (GameObject)Instantiate(spew, transform.position, faceEast);
+			GameObject spewAudio = (GameObject)Instantiate(spewNoise, transform.position, transform.rotation);
+			
+			Debug.Log ("Fire");
+			spewLoaded = false;
+			startReloading = true;
+			fireEast = false;
 		}
 
 	}
@@ -81,7 +156,6 @@ public class SpewtumBehavior : MonoBehaviour {
 		yield return new WaitForSeconds (reloadTime);
 		spewLoaded = true;
 		Debug.Log("Spew Loaded");
-
 
 	}
 

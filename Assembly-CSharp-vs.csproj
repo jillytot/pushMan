@@ -69,6 +69,7 @@
      <Compile Include="Assets\Scripts\triggerBehavior.cs" />
      <Compile Include="Assets\Scripts\wallColliderBehavior.cs" />
      <Compile Include="Assets\SpewtumBehavior.cs" />
+     <Compile Include="Assets\dontKillOnLoading.cs" />
      <Compile Include="Assets\eyeballFollow.cs" />
      <Compile Include="Assets\killPushman.cs" />
      <Compile Include="Assets\moveMe.cs" />
