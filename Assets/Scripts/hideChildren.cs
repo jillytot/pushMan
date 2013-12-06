@@ -3,21 +3,22 @@ using System.Collections;
 
 public class hideChildren : MonoBehaviour {
 
+	//These should correspond to the color of the switch they are associated with.
 	public bool greenEvent;
 	public bool blueEvent;
 
-	bool eventTriggered;
+	//These are used to trigger specific behavior depending on which color switch it's tied to. 
 	bool greenTriggered;
 	bool blueTriggered;
 
 	// Use this for initialization
 	void Start () {
 
-		//First disable the children at game start
-		eventTriggered = false;
+		//initialize this conditionals as false so their corresponding events are only triggered once in update
 		greenTriggered = false;
 		blueTriggered = false;
 
+		//deactivate all the children in this object until an event is triggered.
 		foreach(Transform child in transform) 
 			child.gameObject.active = !child.gameObject.active;
 	}
@@ -25,34 +26,29 @@ public class hideChildren : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		//Then when an event is triggered, activate all the children.
-		if (eventTriggered == false && triggerBehavior.triggerSwitch == true) {
+		//Depending on your color designation, do the corresponding action. 
+		//The collider needs to be disabled on any of these actions otherwise the children won't activate
 
-			//If you don't disable the collider, the children will not spawn, nor will the player be able to pass through the space. 
-			gameObject.collider.enabled = false;
-			deactiveAllChildren ();
-			eventTriggered = true;
-
-		}
-
+		//Green Event
 		if (greenEvent == true && greenTriggered == false && triggerBehavior.triggerGreen == true) {
 
 			gameObject.collider.enabled = false;
-			deactiveAllChildren ();
+			activeAllChildren ();
 			Debug.Log ("Green Event is Happening");
 			greenTriggered = true;
 		}
 
+		//Blue Event
 		if (blueEvent == true && blueTriggered == false && triggerBehavior.triggerBlue == true) {
 			
 			gameObject.collider.enabled = false;
-			deactiveAllChildren ();
+			activeAllChildren ();
 			Debug.Log ("Green Event is Happening");
 			blueTriggered = true;
 		}
 	}
 
-	void deactiveAllChildren () {
+	void activeAllChildren () {
 
 		Debug.Log ("Activate the Children!");
 
