@@ -76,7 +76,7 @@ public class Adventurer : MonoBehaviour {
 		var itsLocked = other.GetComponent<lockBehavior>(); //I hit a locked door
 		var getTool = other.GetComponent<itemTool>(); //I found a tool
 		var goToNextLevel = other.GetComponent<starBehavior>(); //I reached the end of the level
-		var hitSwitch = other.GetComponent<triggerBehavior>(); //I hit a switch
+		//var hitSwitch = other.GetComponent<triggerBehavior>(); //I hit a switch
 		var killMe = other.GetComponent<killPushman>(); //If i touch something deadly...
 		var trollme = other.GetComponent<trollStar>();
 
@@ -109,10 +109,11 @@ public class Adventurer : MonoBehaviour {
 			Application.LoadLevel(Application.loadedLevel+1);
 		}
 		//activate a switch on collision
-		if (hitSwitch && triggerBehavior.triggerSwitch == false) {
-			triggerBehavior.triggerSwitch = true;
-			audio.PlayOneShot(getItemSFX, 0.5F);
-		}
+		//if (hitSwitch && triggerBehavior.triggerSwitch == false) {
+		//	triggerBehavior.triggerSwitch = true;
+		//	audio.PlayOneShot(getItemSFX, 0.5F);
+		//}
+
 
 		if (killMe) {
 
