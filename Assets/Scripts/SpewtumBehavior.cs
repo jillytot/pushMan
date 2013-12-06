@@ -3,19 +3,21 @@ using System.Collections;
 
 public class SpewtumBehavior : MonoBehaviour {
 
-	public float spewRange = 12;
-	public float spewSpeed = 1;
-	public float reloadTime = 1;
-	public GameObject spew;
-	public GameObject spewNoise;
+	public float spewRange = 12; // How far can Spewtum shoot?
+	public float spewSpeed = 1; //How fast does the bullet fly?
+	public float reloadTime = 1; //How long until he can fire again?
+	public GameObject spew; // Used to instantiate Spewtum's projectile
+	public GameObject spewNoise; //used to create Spewtum's sound
 
-	public Quaternion facingDIrection = Quaternion.identity;
+	public Quaternion facingDIrection = Quaternion.identity; //used for determining the rotation of the projectile's spawn.
 
+	//short cuts for directions
 	Vector3 north;
 	Vector3 east;
 	Vector3 south;
 	Vector3 west;
 
+	//Conditionals used for firing projectiles.
 	bool spewLoaded = true;
 	bool startReloading = false;
 	bool fireNorth = false;
@@ -26,6 +28,7 @@ public class SpewtumBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		//Let's define those directions.
 		north = transform.TransformDirection(Vector3.forward) * spewRange;
 		east = transform.TransformDirection(Vector3.right) * spewRange;
 		south = transform.TransformDirection(Vector3.back) * spewRange;
@@ -36,11 +39,12 @@ public class SpewtumBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
-
-		showRaycasts ();
+		//Call these funtions on Update
+		//showRaycasts ();
 		detectTarget ();
 		spewChunk ();
 
+		//After firing a bullet, you need to load
 		if (startReloading == true) {
 
 			StartCoroutine("reload");
@@ -49,12 +53,14 @@ public class SpewtumBehavior : MonoBehaviour {
 
 	}
 
+	//rules for detecting if the player is in firing range.
 	void detectTarget () {
 
-
+		//Use the hit to determine what course of action to take.
 		RaycastHit hit;
 
-		//if (Physics.Raycast(transform.position, north, out hit , spewRange)) {
+		//If the raycast hits the player, tell Spewtum to fire in that direction.
+		//Do this for all 4 directions.
 
 		if (Physics.Raycast(transform.position, north, out hit, spewRange)) {
 
@@ -99,9 +105,13 @@ public class SpewtumBehavior : MonoBehaviour {
 
 	void spewChunk () {
 
+		//This determine which direction to spawn the buillet in.
 		var faceSouth = Quaternion.LookRotation(south);
 		var faceWest = Quaternion.LookRotation(west);
 		var faceEast = Quaternion.LookRotation(east);
+
+		//If Spewtum is ready to fire, use the direction received from detectTarget to spawn a bullet facing that direction.
+		//Spewtum also plays a sound spawned as a separate object so the sound won't get destroyed on level load. 
 
 		if (fireNorth && spewLoaded) {
 
@@ -149,6 +159,7 @@ public class SpewtumBehavior : MonoBehaviour {
 
 	}
 
+	//Once fired, wait a certain amount of time before being able to fire again.
 	IEnumerator reload () {
 
 		startReloading = false;
@@ -156,9 +167,11 @@ public class SpewtumBehavior : MonoBehaviour {
 		yield return new WaitForSeconds (reloadTime);
 		spewLoaded = true;
 		Debug.Log("Spew Loaded");
+		yield return new WaitForFixedUpdate ();
 
 	}
 
+	//Call this function to show Spewtums Raycasts
 	void showRaycasts () {
 
 		//show raycasts

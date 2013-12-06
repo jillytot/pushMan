@@ -78,6 +78,7 @@ public class Adventurer : MonoBehaviour {
 		var goToNextLevel = other.GetComponent<starBehavior>(); //I reached the end of the level
 		var hitSwitch = other.GetComponent<triggerBehavior>(); //I hit a switch
 		var killMe = other.GetComponent<killPushman>(); //If i touch something deadly...
+		var trollme = other.GetComponent<trollStar>();
 
 		//Collect Gems
 		if (gem) {
@@ -117,6 +118,12 @@ public class Adventurer : MonoBehaviour {
 
 			Debug.Log ("I'm am the deaaadd....");
 			Application.LoadLevel(Application.loadedLevel);
+		}
+
+		if (trollme) {
+
+			trollStar.starInst.showMessage = true;
+
 		}
 	}
 }

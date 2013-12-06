@@ -49,14 +49,19 @@
      <Compile Include="Assets\Scripts\Adventurer.cs" />
      <Compile Include="Assets\Scripts\CameraFX.cs" />
      <Compile Include="Assets\Scripts\Gem.cs" />
+     <Compile Include="Assets\Scripts\SpewtumBehavior.cs" />
      <Compile Include="Assets\Scripts\baseTile.cs" />
      <Compile Include="Assets\Scripts\characterController.cs" />
      <Compile Include="Assets\Scripts\disableRenderer.cs" />
+     <Compile Include="Assets\Scripts\dontKillOnLoading.cs" />
+     <Compile Include="Assets\Scripts\eyeballFollow.cs" />
      <Compile Include="Assets\Scripts\itemTool.cs" />
      <Compile Include="Assets\Scripts\keyScript.cs" />
      <Compile Include="Assets\Scripts\killMeWhen.cs" />
+     <Compile Include="Assets\Scripts\killPushman.cs" />
      <Compile Include="Assets\Scripts\levitateMe.cs" />
      <Compile Include="Assets\Scripts\lockBehavior.cs" />
+     <Compile Include="Assets\Scripts\moveMe.cs" />
      <Compile Include="Assets\Scripts\musicManager.cs" />
      <Compile Include="Assets\Scripts\myGUI.cs" />
      <Compile Include="Assets\Scripts\playerCollider.cs" />
@@ -67,16 +72,16 @@
      <Compile Include="Assets\Scripts\switchBehavior.cs" />
      <Compile Include="Assets\Scripts\trackMe.cs" />
      <Compile Include="Assets\Scripts\triggerBehavior.cs" />
+     <Compile Include="Assets\Scripts\trollStar.cs" />
      <Compile Include="Assets\Scripts\wallColliderBehavior.cs" />
-     <Compile Include="Assets\SpewtumBehavior.cs" />
-     <Compile Include="Assets\dontKillOnLoading.cs" />
-     <Compile Include="Assets\eyeballFollow.cs" />
-     <Compile Include="Assets\killPushman.cs" />
-     <Compile Include="Assets\moveMe.cs" />
      <None Include="Assets\Shaders\Simple.shader" />
      <None Include="Assets\Shaders\RimSharp.shader" />
      <None Include="Assets\Shaders\RimSharpAdd.shader" />
      <None Include="Assets\Shaders\Rim.shader" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{706B9B97-A6E8-9576-494D-E8B9C375C89F}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
