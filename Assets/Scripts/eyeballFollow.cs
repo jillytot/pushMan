@@ -13,13 +13,11 @@ public class eyeballFollow : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		centerPos = transform.position;
+		centerPos = transform.localPosition;
 	
 	}
-	
-	// Update is called once per frame
 	void Update () {
-
+	
 		eyeballTracking ();
 	
 	}
@@ -31,7 +29,7 @@ public class eyeballFollow : MonoBehaviour {
 
 		targetPosition = new Vector3(trackMe.playerPosX, elevation, trackMe.playerPosZ);
 		Vector3 offset = targetPosition - centerPos;
-		transform.position = centerPos + Vector3.ClampMagnitude(offset, lookRadius) * trackingSpeed * Time.deltaTime;
+		transform.localPosition = centerPos + Vector3.ClampMagnitude(offset, lookRadius) * trackingSpeed * Time.deltaTime;
 
 	}
 }

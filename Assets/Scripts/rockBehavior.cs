@@ -6,10 +6,13 @@ public class rockBehavior : MonoBehaviour {
 	public int rockHP = 3; //HP of rock
 	public GameObject[] rockGraphics; //Different children which can spawn to show the state of the rock visually. 
 	public GameObject sparks;
+	public float refreshTime = 0.1f;
+	bool hitMeAgain;
 
 	// Use this for initialization
 	void Start () {
 
+		hitMeAgain = true;
 		renderer.enabled = false; //toggle to make default rock object visible during gameplay.
 		generateChild ();
 	
@@ -19,12 +22,26 @@ public class rockBehavior : MonoBehaviour {
 	void OnTriggerEnter (Collider other) {
 
 		var imHit = other.GetComponent<Adventurer>();
+		var spewHit = other.GetComponent<spewBulletBehavior>();
 
-		if (Adventurer.pickAxe == true) {
+		if (Adventurer.pickAxe == true && imHit) {
 			rockHP -= 1;
 			GameObject spawnSparks = (GameObject)Instantiate(sparks,transform.position, transform.rotation);
 			destroyChild ();
 			generateChild ();
+			//hitMeAgain = false;
+			//StartCoroutine ("waitASec");
+			
+		}
+
+		if (hitMeAgain == true && spewHit) {
+
+			rockHP -= 1;
+			GameObject spawnSparks = (GameObject)Instantiate(sparks,transform.position, transform.rotation);
+			destroyChild ();
+			generateChild ();
+			hitMeAgain = false;
+			StartCoroutine ("waitASec");
 
 		}
 	}
@@ -54,5 +71,11 @@ public class rockBehavior : MonoBehaviour {
 			Destroy(this.gameObject);
 			break;
 		}
+	}
+
+	IEnumerator waitASec () {
+
+		yield return new WaitForSeconds(refreshTime);
+		hitMeAgain = true;
 	}
 }
