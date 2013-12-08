@@ -3,7 +3,7 @@ using System.Collections;
 
 public class hideChildren : MonoBehaviour {
 
-	//These should correspond to the color of the switch they are associated with.
+	//These should correspond to the color of the switch they are associated with.   
 	public bool greenEvent;
 	public bool blueEvent;
 
@@ -21,31 +21,31 @@ public class hideChildren : MonoBehaviour {
 		greenTriggered = false;
 		blueTriggered = false;
 
-		//deactivate all the children in this object until an event is triggered.
+		//deactivate all the children in this object until an event is triggered. 
 		foreach(Transform child in transform) 
-			child.gameObject.active = !child.gameObject.active;
+			child.gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		//Depending on your color designation, do the corresponding action. 
+		//Depending on your color designation, do the corresponding action.
 		//The collider needs to be disabled on any of these actions otherwise the children won't activate
 
 		//Green Event
 		if (greenEvent == true && greenTriggered == false && triggerBehavior.triggerGreen == true) {
 
-			GameObject showMe = (GameObject)Instantiate(revealEvent, transform.position, transform.rotation);
-			gameObject.collider.enabled = false;
-			activeAllChildren ();
+			Instantiate(revealEvent, transform.position, transform.rotation); //particle effect
+			gameObject.collider.enabled = false; //disable the collider
+			activeAllChildren (); //activate all the children in the parent object
 			Debug.Log ("Green Event is Happening");
-			greenTriggered = true;
+			greenTriggered = true; //reports back this event is now triggered
 		}
 
 		//Blue Event
 		if (blueEvent == true && blueTriggered == false && triggerBehavior.triggerBlue == true) {
 
-			GameObject showMe = (GameObject)Instantiate(revealEvent, transform.position, transform.rotation);
+			Instantiate(revealEvent, transform.position, transform.rotation);
 			gameObject.collider.enabled = false;
 			activeAllChildren ();
 			Debug.Log ("Green Event is Happening");
@@ -58,7 +58,7 @@ public class hideChildren : MonoBehaviour {
 		Debug.Log ("Activate the Children!");
 
 		foreach(Transform child in transform) 
-			child.gameObject.active = true;
+			child.gameObject.SetActive(true);
 
 	}
 }

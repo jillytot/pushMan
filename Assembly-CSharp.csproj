@@ -76,11 +76,21 @@
      <Compile Include="Assets\Scripts\triggerBehavior.cs" />
      <Compile Include="Assets\Scripts\trollStar.cs" />
      <Compile Include="Assets\Scripts\wallColliderBehavior.cs" />
+     <Compile Include="Assets\moveGroup.cs" />
      <Compile Include="Assets\spewBulletBehavior.cs" />
      <None Include="Assets\Shaders\Simple.shader" />
      <None Include="Assets\Shaders\RimSharp.shader" />
      <None Include="Assets\Shaders\RimSharpAdd.shader" />
+     <None Include="Assets\Shaders\FogHighlightBlended.shader" />
+     <None Include="Assets\Shaders\FogHighlight.shader" />
+     <None Include="Assets\Shaders\Fog.shader" />
+     <None Include="Assets\Shaders\Fog.cginc" />
      <None Include="Assets\Shaders\Rim.shader" />
+     <None Include="Assets\Shaders\InnerGlow.shader" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{706B9B97-A6E8-9576-494D-E8B9C375C89F}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

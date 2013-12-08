@@ -26,7 +26,7 @@ public class rockBehavior : MonoBehaviour {
 
 		if (Adventurer.pickAxe == true && imHit) {
 			rockHP -= 1;
-			GameObject spawnSparks = (GameObject)Instantiate(sparks,transform.position, transform.rotation);
+			Instantiate(sparks,transform.position, transform.rotation);
 			destroyChild ();
 			generateChild ();
 			//hitMeAgain = false;
@@ -37,7 +37,7 @@ public class rockBehavior : MonoBehaviour {
 		if (hitMeAgain == true && spewHit) {
 
 			rockHP -= 1;
-			GameObject spawnSparks = (GameObject)Instantiate(sparks,transform.position, transform.rotation);
+			Instantiate(sparks,transform.position, transform.rotation);
 			destroyChild ();
 			generateChild ();
 			hitMeAgain = false;

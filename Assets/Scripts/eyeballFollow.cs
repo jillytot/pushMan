@@ -13,7 +13,7 @@ public class eyeballFollow : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		centerPos = transform.localPosition;
+		centerPos = transform.position;
 	
 	}
 	void Update () {
@@ -25,11 +25,11 @@ public class eyeballFollow : MonoBehaviour {
 	//Track movement of another object while being confined to a radius
 	void eyeballTracking () {
 
-		elevation = transform.localPosition.y;
+		elevation = transform.position.y;
 
 		targetPosition = new Vector3(trackMe.playerPosX, elevation, trackMe.playerPosZ);
 		Vector3 offset = targetPosition - centerPos;
-		transform.localPosition = centerPos + Vector3.ClampMagnitude(offset, lookRadius) * trackingSpeed * Time.deltaTime;
+		transform.position = centerPos + Vector3.ClampMagnitude(offset, lookRadius) * trackingSpeed * Time.deltaTime;
 
 	}
 }

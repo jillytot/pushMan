@@ -21,8 +21,8 @@ public class trollStar : MonoBehaviour {
 
 		if (showMessage == true && messageDisplayed == false) {
 
-			GameObject haha = (GameObject)Instantiate(trollMessage, transform.position, transform.rotation);
-			GameObject hoho = (GameObject)Instantiate(trollsound, transform.position, transform.rotation);
+			Instantiate(trollMessage, transform.position, transform.rotation);
+			Instantiate(trollsound, transform.position, transform.rotation);
 			messageDisplayed = true;
 
 		}

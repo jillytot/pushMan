@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SpewtumBehavior : MonoBehaviour {
 
-	public float spewRange = 12; // How far can Spewtum shoot?
+	public float spewRange = 12; // How far can Spewtum shoot?   
 	public float spewSpeed = 1; //How fast does the bullet fly?
 	public float reloadTime = 1; //How long until he can fire again?
 	public GameObject spew; // Used to instantiate Spewtum's projectile
@@ -82,8 +82,8 @@ public class SpewtumBehavior : MonoBehaviour {
 
 			if (fireNorth && spewLoaded) {
 				
-				GameObject spewNorth = (GameObject)Instantiate(spew, transform.position, transform.rotation);
-				GameObject spewAudio = (GameObject)Instantiate(spewNoise, transform.position, transform.rotation);
+				Instantiate(spew, transform.position, transform.rotation);
+				Instantiate(spewNoise, transform.position, transform.rotation);
 				
 				Debug.Log ("Fire");
 				spewLoaded = false;
@@ -103,8 +103,8 @@ public class SpewtumBehavior : MonoBehaviour {
 
 			if (fireSouth && spewLoaded) {
 				
-				GameObject spewSouth = (GameObject)Instantiate(spew, transform.position, faceSouth);
-				GameObject spewAudio = (GameObject)Instantiate(spewNoise, transform.position, transform.rotation);
+				Instantiate(spew, transform.position, faceSouth);
+				Instantiate(spewNoise, transform.position, transform.rotation);
 				
 				Debug.Log ("Fire");
 				spewLoaded = false;
@@ -124,8 +124,8 @@ public class SpewtumBehavior : MonoBehaviour {
 
 			if (fireEast && spewLoaded) {
 				
-				GameObject spewEast = (GameObject)Instantiate(spew, transform.position, faceEast);
-				GameObject spewAudio = (GameObject)Instantiate(spewNoise, transform.position, transform.rotation);
+				Instantiate(spew, transform.position, faceEast);
+				Instantiate(spewNoise, transform.position, transform.rotation);
 				
 				Debug.Log ("Fire");
 				spewLoaded = false;
@@ -145,8 +145,9 @@ public class SpewtumBehavior : MonoBehaviour {
 
 			if (fireWest && spewLoaded) {
 				
-				GameObject spewWest = (GameObject)Instantiate(spew, transform.position, faceWest);
-				GameObject spewAudio = (GameObject)Instantiate(spewNoise, transform.position, transform.rotation);
+				//GameObject spewWest = (GameObject)Instantiate(spew, transform.position, faceWest);
+				Instantiate(spew, transform.position, faceWest);
+				Instantiate(spewNoise, transform.position, transform.rotation);
 				
 				Debug.Log ("Fire");
 				spewLoaded = false;

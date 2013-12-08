@@ -27,7 +27,7 @@ public class spewBulletBehavior : MonoBehaviour {
 	void destroyMe () {
 
 		Debug.Log ("I hit a rock");
-		GameObject explode = (GameObject)Instantiate(makeExplosion, transform.position, transform.rotation);
+		Instantiate(makeExplosion, transform.position, transform.rotation);
 		Destroy(this.gameObject);
 		
 	}

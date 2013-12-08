@@ -79,7 +79,7 @@ public class baseTile : MonoBehaviour {
 		} else {
 			//Debug.Log("There is nothing to my right");
 			//Spawn collider to my right
-			GameObject spawnWallRight = (GameObject)Instantiate(wallCollider, rightSpawnPos, transform.rotation);
+			Instantiate(wallCollider, rightSpawnPos, transform.rotation);
 		}
 
 		//raycast to the left
@@ -88,7 +88,7 @@ public class baseTile : MonoBehaviour {
 		} else {
 			//Debug.Log("There is nothing to my left");
 			//spawn collider to my left
-			GameObject spawnWallLeft = (GameObject)Instantiate(wallCollider,leftSpawnPos, transform.rotation);
+			Instantiate(wallCollider,leftSpawnPos, transform.rotation);
 		}
 		
 		//raycast to up
@@ -97,7 +97,7 @@ public class baseTile : MonoBehaviour {
 		} else {
 			//Debug.Log("There is nothing to my up");
 			//spawn collider up (north)
-			GameObject spawnWallForward = (GameObject)Instantiate(wallCollider, forwardSpawnPos, transform.rotation);
+			Instantiate(wallCollider, forwardSpawnPos, transform.rotation);
 		}
 		
 		//raycast to down
@@ -106,7 +106,7 @@ public class baseTile : MonoBehaviour {
 		} else {
 			//Debug.Log("There is nothing to my down");
 			//spawn collider down (south)
-			GameObject spawnWallBack = (GameObject)Instantiate(wallCollider, backSpawnPos, transform.rotation);
+			Instantiate(wallCollider, backSpawnPos, transform.rotation);
 		} 
 	}
 }

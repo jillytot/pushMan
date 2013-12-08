@@ -1,12 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-//this is used for smoothing the rotation of the character as it turns
-public static class CustomExtensions {
-	public static Quaternion EaseTowards(this Quaternion curr, Quaternion target, float easing) {
-	return Quaternion.Slerp(curr, target, Mathf.Pow(easing, Mathf.Clamp01(60f * Time.deltaTime)));
-	}
-}
+
 
 [RequireComponent(typeof(Rigidbody))]
 public class Adventurer : MonoBehaviour {
@@ -25,8 +20,8 @@ public class Adventurer : MonoBehaviour {
     public float moveSpeed = 10f; //How fast does pushman Move?
     public float turnSpeed = 0.2f; //How fast do i turn?
 	Rigidbody body; //an instance of the rigid body that can be acted upon (I think...)
-	bool grounded = false; //Returns true if player is over an object (might use in the future for jumping)
-	float tileSize = 2; //tile size is used for physics calculations
+	//bool grounded = false; //Returns true if player is over an object (might use in the future for jumping)
+	//float tileSize = 2; //tile size is used for physics calculations
 	public bool mirrorMan; 
 
 	void Awake() {
@@ -62,11 +57,11 @@ public class Adventurer : MonoBehaviour {
 			body.MoveRotation( body.rotation.EaseTowards(targetRotation, turnSpeed) ); //rotate and face direction of input
 		}
 		
-		// Detect Platform, probably no longer needed...
-		Vector3 onPlatform = transform.InverseTransformDirection(Vector3.down);
-		if (Physics.Raycast(transform.position, onPlatform, 10))
+		// Detect Platform, probably no longer needed... 
+		//Vector3 onPlatform = transform.InverseTransformDirection(Vector3.down);
+		//if (Physics.Raycast(transform.position, onPlatform, 10)) 
 			//print ("There is something below me");
-			grounded = true;
+			//grounded = true;
 	}
 	
 	//Manages different collisions
