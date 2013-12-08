@@ -39,11 +39,6 @@ public class SpewtumBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
-		//Call these funtions on Update
-		//showRaycasts ();
-		detectTarget ();
-		spewChunk ();
-
 		//After firing a bullet, you need to load
 		if (startReloading == true) {
 
@@ -51,16 +46,30 @@ public class SpewtumBehavior : MonoBehaviour {
 
 		}
 
+		//Call these funtions on Update
+		//showRaycasts ();
+		detectTarget ();
+
 	}
 
-	//rules for detecting if the player is in firing range.
+	//rules for detecting if the player is in firing range and how to fire at them.
 	void detectTarget () {
+
+		//Determine which direction to shoot the bullet in
+		var faceSouth = Quaternion.LookRotation(south);
+		var faceWest = Quaternion.LookRotation(west);
+		var faceEast = Quaternion.LookRotation(east);
 
 		//Use the hit to determine what course of action to take.
 		RaycastHit hit;
 
 		//If the raycast hits the player, tell Spewtum to fire in that direction.
 		//Do this for all 4 directions.
+
+		//Then if there is a target and bullet is loaded:
+
+		//If Spewtum is ready to fire, use the direction received from detectTarget to spawn a bullet facing that direction.
+		//Spewtum also plays a sound spawned as a separate object so the sound won't get destroyed on level load. 
 
 		if (Physics.Raycast(transform.position, north, out hit, spewRange)) {
 
@@ -69,6 +78,17 @@ public class SpewtumBehavior : MonoBehaviour {
 			if (fireNorth) {
 				
 				Debug.Log("target is North");
+			}
+
+			if (fireNorth && spewLoaded) {
+				
+				GameObject spewNorth = (GameObject)Instantiate(spew, transform.position, transform.rotation);
+				GameObject spewAudio = (GameObject)Instantiate(spewNoise, transform.position, transform.rotation);
+				
+				Debug.Log ("Fire");
+				spewLoaded = false;
+				startReloading = true;
+				fireNorth = false;
 			}
 		}
 
@@ -80,6 +100,17 @@ public class SpewtumBehavior : MonoBehaviour {
 				
 				Debug.Log("target is South");
 			}
+
+			if (fireSouth && spewLoaded) {
+				
+				GameObject spewSouth = (GameObject)Instantiate(spew, transform.position, faceSouth);
+				GameObject spewAudio = (GameObject)Instantiate(spewNoise, transform.position, transform.rotation);
+				
+				Debug.Log ("Fire");
+				spewLoaded = false;
+				startReloading = true;
+				fireSouth = false;
+			}
 		}
 
 		if (Physics.Raycast(transform.position, east, out hit, spewRange)) {
@@ -89,6 +120,17 @@ public class SpewtumBehavior : MonoBehaviour {
 			if (fireEast) {
 				
 				Debug.Log("target is East");
+			}
+
+			if (fireEast && spewLoaded) {
+				
+				GameObject spewEast = (GameObject)Instantiate(spew, transform.position, faceEast);
+				GameObject spewAudio = (GameObject)Instantiate(spewNoise, transform.position, transform.rotation);
+				
+				Debug.Log ("Fire");
+				spewLoaded = false;
+				startReloading = true;
+				fireEast = false;
 			}
 		}
 
@@ -100,64 +142,21 @@ public class SpewtumBehavior : MonoBehaviour {
 				
 				Debug.Log("target is West");
 			}
+
+			if (fireWest && spewLoaded) {
+				
+				GameObject spewWest = (GameObject)Instantiate(spew, transform.position, faceWest);
+				GameObject spewAudio = (GameObject)Instantiate(spewNoise, transform.position, transform.rotation);
+				
+				Debug.Log ("Fire");
+				spewLoaded = false;
+				startReloading = true;
+				fireWest = false;
+
+			}
 		}
 	}
 
-	void spewChunk () {
-
-		//This determine which direction to spawn the buillet in.
-		var faceSouth = Quaternion.LookRotation(south);
-		var faceWest = Quaternion.LookRotation(west);
-		var faceEast = Quaternion.LookRotation(east);
-
-		//If Spewtum is ready to fire, use the direction received from detectTarget to spawn a bullet facing that direction.
-		//Spewtum also plays a sound spawned as a separate object so the sound won't get destroyed on level load. 
-
-		if (fireNorth && spewLoaded) {
-
-			GameObject spewNorth = (GameObject)Instantiate(spew, transform.position, transform.rotation);
-			GameObject spewAudio = (GameObject)Instantiate(spewNoise, transform.position, transform.rotation);
-
-			Debug.Log ("Fire");
-			spewLoaded = false;
-			startReloading = true;
-			fireNorth = false;
-		}
-
-		if (fireSouth && spewLoaded) {
-			
-			GameObject spewSouth = (GameObject)Instantiate(spew, transform.position, faceSouth);
-			GameObject spewAudio = (GameObject)Instantiate(spewNoise, transform.position, transform.rotation);
-			
-			Debug.Log ("Fire");
-			spewLoaded = false;
-			startReloading = true;
-			fireSouth = false;
-		}
-
-		if (fireWest && spewLoaded) {
-			
-			GameObject spewWest = (GameObject)Instantiate(spew, transform.position, faceWest);
-			GameObject spewAudio = (GameObject)Instantiate(spewNoise, transform.position, transform.rotation);
-			
-			Debug.Log ("Fire");
-			spewLoaded = false;
-			startReloading = true;
-			fireWest = false;
-		}
-
-		if (fireEast && spewLoaded) {
-			
-			GameObject spewEast = (GameObject)Instantiate(spew, transform.position, faceEast);
-			GameObject spewAudio = (GameObject)Instantiate(spewNoise, transform.position, transform.rotation);
-			
-			Debug.Log ("Fire");
-			spewLoaded = false;
-			startReloading = true;
-			fireEast = false;
-		}
-
-	}
 
 	//Once fired, wait a certain amount of time before being able to fire again.
 	IEnumerator reload () {
@@ -165,9 +164,10 @@ public class SpewtumBehavior : MonoBehaviour {
 		startReloading = false;
 		Debug.Log ("Loading Spew in " + reloadTime + " seconds");
 		yield return new WaitForSeconds (reloadTime);
-		spewLoaded = true;
+
 		Debug.Log("Spew Loaded");
 		yield return new WaitForFixedUpdate ();
+		spewLoaded = true;
 
 	}
 

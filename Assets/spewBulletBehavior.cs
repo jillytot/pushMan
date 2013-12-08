@@ -11,6 +11,7 @@ public class spewBulletBehavior : MonoBehaviour {
 
 	}
 
+	//Make the rock hit things and die.
 	void OnTriggerEnter (Collider other) {
 		
 		var iHitARock = other.GetComponent<rockBehavior>();
