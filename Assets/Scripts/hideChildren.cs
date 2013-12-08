@@ -7,6 +7,9 @@ public class hideChildren : MonoBehaviour {
 	public bool greenEvent;
 	public bool blueEvent;
 
+	//For spawning particles:
+	public GameObject revealEvent;
+
 	//These are used to trigger specific behavior depending on which color switch it's tied to. 
 	bool greenTriggered;
 	bool blueTriggered;
@@ -32,6 +35,7 @@ public class hideChildren : MonoBehaviour {
 		//Green Event
 		if (greenEvent == true && greenTriggered == false && triggerBehavior.triggerGreen == true) {
 
+			GameObject showMe = (GameObject)Instantiate(revealEvent, transform.position, transform.rotation);
 			gameObject.collider.enabled = false;
 			activeAllChildren ();
 			Debug.Log ("Green Event is Happening");
@@ -40,7 +44,8 @@ public class hideChildren : MonoBehaviour {
 
 		//Blue Event
 		if (blueEvent == true && blueTriggered == false && triggerBehavior.triggerBlue == true) {
-			
+
+			GameObject showMe = (GameObject)Instantiate(revealEvent, transform.position, transform.rotation);
 			gameObject.collider.enabled = false;
 			activeAllChildren ();
 			Debug.Log ("Green Event is Happening");

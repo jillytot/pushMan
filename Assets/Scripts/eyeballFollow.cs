@@ -25,7 +25,7 @@ public class eyeballFollow : MonoBehaviour {
 	//Track movement of another object while being confined to a radius
 	void eyeballTracking () {
 
-		elevation = transform.position.y;
+		elevation = transform.localPosition.y;
 
 		targetPosition = new Vector3(trackMe.playerPosX, elevation, trackMe.playerPosZ);
 		Vector3 offset = targetPosition - centerPos;
