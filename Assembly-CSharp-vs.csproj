@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\triggerBehavior.cs" />
      <Compile Include="Assets\Scripts\trollStar.cs" />
      <Compile Include="Assets\Scripts\wallColliderBehavior.cs" />
+     <Compile Include="Assets\lookerBehavior.cs" />
      <Compile Include="Assets\moveGroup.cs" />
      <Compile Include="Assets\spewBulletBehavior.cs" />
      <None Include="Assets\Shaders\Simple.shader" />

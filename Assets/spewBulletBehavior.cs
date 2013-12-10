@@ -15,10 +15,19 @@ public class spewBulletBehavior : MonoBehaviour {
 	void OnTriggerEnter (Collider other) {
 		
 		var iHitARock = other.GetComponent<rockBehavior>();
+		var iHitALooker = other.GetComponent<lookerBehavior>();
 		var iHitPlayer = other.GetComponent<Adventurer>();
 		
 		if (iHitARock || iHitPlayer) {
 
+		
+			destroyMe ();
+			
+		}
+
+		if (iHitALooker) {
+			
+			Destroy (iHitALooker.gameObject);
 			destroyMe ();
 			
 		}

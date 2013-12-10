@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
 using UnityEditor;
 
-
+//This script runs in the editor, and helps me do useful things.
 [ExecuteInEditMode () ]
 public class alignMe : MonoBehaviour {
 	
 	public static float tileSize = 2;
+
+
 	
 	// Use this for initialization
 	void Start () {
@@ -18,20 +20,27 @@ public class alignMe : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		//When enabled, objects wiill snap to the nearest integer when being moved around. 
 		if   (Selection.activeTransform) {
 
-		float snapX = Mathf.Round (Selection.activeTransform.transform.position.x);
-		float snapY = Mathf.Round (Selection.activeTransform.transform.position.y);
-		float snapZ = Mathf.Round (Selection.activeTransform.transform.position.z);
+			foreach(var mySelection in Selection.gameObjects) {
 
-		//Debug.Log (snapX);
-		//Debug.Log (snapY);
-		//Debug.Log (snapZ);
+				//Debug.Log("I am a selected transform..." + gameObject.transform.position.ToString());
 
-		Selection.activeTransform.transform.position = new Vector3(snapX, snapY, snapZ);
-		
+				float snapX = Mathf.Round (mySelection.transform.position.x);
+				float snapY = Mathf.Round (mySelection.transform.position.y);
+				float snapZ = Mathf.Round (mySelection.transform.position.z);
+
+
+				//Debug.Log (snapX);
+				//Debug.Log (snapY);
+				//Debug.Log (snapZ);
+
+				mySelection.transform.position = new Vector3(snapX, snapY, snapZ);
+
+			}
 		}
 	}
 }
 
-#endif
+//#endif
