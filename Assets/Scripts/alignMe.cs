@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-//#if UNITY_EDITOR
+#if UNITY_EDITOR
 using UnityEditor;
 
 //This script runs in the editor, and helps me do useful things.
@@ -43,4 +43,4 @@ public class alignMe : MonoBehaviour {
 	}
 }
 
-//#endif
+#endif

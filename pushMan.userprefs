@@ -1,17 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SpewtumBehavior.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/alignMe.cs">
     <Files>
-      <File FileName="Assets/Scripts/switchBehavior.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/SpewtumBehavior.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/baseTile.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/hideChildren.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/trollStar.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/rockBehavior.cs" Line="1" Column="1" />
-      <File FileName="Assets/spewBulletBehavior.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Adventurer.cs" Line="1" Column="1" />
-      <File FileName="Assets/Plugins/CustomExtensions.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/alignMe.cs" Line="41" Column="5" />
+      <File FileName="Assets/Scripts/alignMe.cs" Line="46" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
