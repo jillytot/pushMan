@@ -137,7 +137,7 @@ public class lookerBehavior : MonoBehaviour {
 		} else { 
 
 			possibleDirections.Add(direction.WEST);
-			Debug.Log ("There is nothing to my left...");
+			//Debug.Log ("There is nothing to my left...");
 		}
 
 		//Debug.Log ("Done Checking Directions...");
@@ -203,7 +203,6 @@ public class lookerBehavior : MonoBehaviour {
 			break;
 		}
 
-		//possibleDirections.RemoveAt();
 		//Debug.Log("Possible Directions Index:  " + possibleDirections.Count);
 	}
 	

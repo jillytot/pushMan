@@ -7,8 +7,17 @@ using System.Collections;
 public class Adventurer : MonoBehaviour {
 
 	//gameplay variables
-	public static int gemCount = 0; //How many total gems do i have? 
-	public static int keyCount = 0; // How many total keys am i carrying?
+	public static int gemCount; //How many total gems do i have? 
+	public static int currentGemCount; //How gems have i collected this scene?
+
+	public static int keyCount; // How many total keys am i carrying?
+	public static int currentKeyCount; //How many keys have i collected this scene?
+	public static int lastKeyCount; //Used to store previous value.
+
+	//Used to report final values to GUI on trigger and @ Start ()
+	public static int guiGemCount;
+	public static int guiKeyCount;
+
 	public static bool pickAxe; //Do i have a pickaxe?
 
 	//audio clips
@@ -25,12 +34,25 @@ public class Adventurer : MonoBehaviour {
 	public bool mirrorMan; 
 
 	void Awake() {
+
 		body = GetComponent<Rigidbody>(); //creates rigidbody instance
+
 	}
 
 	void Start () {
 
 		pickAxe = false; //always start a level with no pickaxe
+
+		//Initialize these values at 0 for the start of every scene to make sure their data is removed on reset / death.
+		currentGemCount = 0;
+		currentKeyCount = 0;
+
+		//Load the previous stored keycount
+		keyCount = lastKeyCount;
+
+		//Report correct values to GUI
+		guiGemCount = currentGemCount + gemCount;
+		guiKeyCount = currentKeyCount + keyCount;
 
 	}
     
@@ -40,21 +62,22 @@ public class Adventurer : MonoBehaviour {
     void Update () {
 
 		//Creates movement in x and z directions.
-		var inputSignal = new Vector3(
-			Input.GetAxisRaw("Horizontal"),
-			0,
-			Input.GetAxisRaw("Vertical")
-		);
+		var inputSignal = new Vector3(Input.GetAxisRaw("Horizontal"),0 ,Input.GetAxisRaw("Vertical"));
+
 		if (inputSignal.sqrMagnitude > 0.05f * 0.05f && mirrorMan == false) {
+
 			body.MovePosition(body.position + (moveSpeed * Time.deltaTime) * inputSignal); //move in direction of input
 			var targetRotation = Quaternion.LookRotation(inputSignal);
 			body.MoveRotation( body.rotation.EaseTowards(targetRotation, turnSpeed) ); //rotate and face direction of input
+
 		}
 
 		if (inputSignal.sqrMagnitude > 0.05f * 0.05f && mirrorMan == true) {
+
 			body.MovePosition(body.position - (moveSpeed * Time.deltaTime) * inputSignal); //move in direction of input
 			var targetRotation = Quaternion.LookRotation(inputSignal);
 			body.MoveRotation( body.rotation.EaseTowards(targetRotation, turnSpeed) ); //rotate and face direction of input
+		
 		}
 		
 		// Detect Platform, probably no longer needed... 
@@ -66,49 +89,76 @@ public class Adventurer : MonoBehaviour {
 	
 	//Manages different collisions
 	void OnTriggerEnter (Collider other) {
+
 		var gem = other.GetComponent<Gem> (); //I hit a gem
 		var key = other.GetComponent<keyScript> (); //I hit a key
 		var itsLocked = other.GetComponent<lockBehavior>(); //I hit a locked door
 		var getTool = other.GetComponent<itemTool>(); //I found a tool
 		var goToNextLevel = other.GetComponent<starBehavior>(); //I reached the end of the level
-		//var hitSwitch = other.GetComponent<triggerBehavior>(); //I hit a switch
 		var killMe = other.GetComponent<killPushman>(); //If i touch something deadly...
 		var trollme = other.GetComponent<trollStar>();
 
 		//Collect Gems
-		if (gem) {
+		if (gem && gem.killGem == false) {
+
+
 			audio.PlayOneShot(getGemSFX, 2.0f);
-			gemCount += gem.gemValue;
-			Destroy (gem.gameObject);
+			currentGemCount += gem.gemValue;
+			guiGemCount = currentGemCount + gemCount;
+			gem.killGem = true;
+
+			//Destroy (gem.gameObject);
+
 		}
+
 		//get keys
-			if (key) {
-				audio.PlayOneShot(getItemSFX, 0.7F);
-				keyCount += key.keyType;
-				Destroy (key.gameObject);
+		if (key) {
+
+			audio.PlayOneShot(getItemSFX, 0.7F);
+			currentKeyCount += key.keyType;
+			guiKeyCount = currentKeyCount + keyCount;
+			Destroy (key.gameObject);
 		}
+
 		//If i have a key, use it and unlock the door 
-		if (itsLocked && keyCount > 0) {
+		if (itsLocked && keyCount + currentKeyCount > 0) {
+
 			audio.PlayOneShot(unlockDoorSFX, 0.4F);
-			keyCount -= 1;
-			Destroy (itsLocked.gameObject);
+
+			if (currentKeyCount > 0) {
+
+				currentKeyCount -= 1;
+				Destroy (itsLocked.gameObject);
+
+			} else {
+
+				keyCount -= 1;
+				Destroy (itsLocked.gameObject);
+
+			}
+
+			//Calculate new value on trigger.
+			guiKeyCount = currentKeyCount + keyCount;
 		}
+
 		//sets pickaxe to true on collision
 		if (getTool) {
+
 			audio.PlayOneShot(getItemSFX, 0.5F);
 			pickAxe = true;
 			Destroy (getTool.gameObject);
 		}
+
 		//loads next level on colliision
 		if (goToNextLevel) {
-			Application.LoadLevel(Application.loadedLevel+1);
-		}
-		//activate a switch on collision
-		//if (hitSwitch && triggerBehavior.triggerSwitch == false) {
-		//	triggerBehavior.triggerSwitch = true;
-		//	audio.PlayOneShot(getItemSFX, 0.5F);
-		//}
 
+			gemCount += currentGemCount;
+			keyCount += currentKeyCount;
+			lastKeyCount = keyCount;
+
+			Application.LoadLevel(Application.loadedLevel+1);
+
+		}
 
 		if (killMe) {
 

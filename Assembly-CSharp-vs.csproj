@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\LerpMe.cs" />
      <Compile Include="Assets\Scripts\Adventurer.cs" />
      <Compile Include="Assets\Scripts\CameraFX.cs" />
      <Compile Include="Assets\Scripts\Gem.cs" />
@@ -76,10 +77,16 @@
      <Compile Include="Assets\Scripts\triggerBehavior.cs" />
      <Compile Include="Assets\Scripts\trollStar.cs" />
      <Compile Include="Assets\Scripts\wallColliderBehavior.cs" />
+     <Compile Include="Assets\cameraTargeting.cs" />
+     <Compile Include="Assets\fadeOut.cs" />
+     <Compile Include="Assets\gemCounter.cs" />
      <Compile Include="Assets\innerEyeController.cs" />
+     <Compile Include="Assets\lookAtCamera.cs" />
      <Compile Include="Assets\lookerBehavior.cs" />
      <Compile Include="Assets\moveGroup.cs" />
+     <Compile Include="Assets\moveableBehavior.cs" />
      <Compile Include="Assets\spewBulletBehavior.cs" />
+     <Compile Include="Assets\touchScreenDpad.cs" />
      <None Include="Assets\Shaders\Simple.shader" />
      <None Include="Assets\Shaders\RimSharp.shader" />
      <None Include="Assets\Shaders\RimSharpAdd.shader" />

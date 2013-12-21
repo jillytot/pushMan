@@ -13,8 +13,11 @@ public class CameraFX : MonoBehaviour {
 	public float cameraTollerance = 3; //If you move out of this range, the camera will follow you (linearRange)
 	public float camRangeX = 8; //If you move out of horizontal range, the camera will follow you (rectRange)
 	public float camRangeZ = 5; //If you move out of horizontal range, the camera will follow you (rectRange)
+	//public static CameraFX cameraTarget;
 
 	void Awake () {
+
+		//cameraTarget = this;
 
 	}
 

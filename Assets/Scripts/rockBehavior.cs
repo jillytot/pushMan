@@ -32,10 +32,10 @@ public class rockBehavior : MonoBehaviour {
 		if (myTreasure == treasure.NONE) {
 
 			containsTreasure = false; 
-			Debug.Log ("I has no booty");
+			//Debug.Log ("I has no booty");
 		} else {
 			containsTreasure = true;
-			Debug.Log ("I has mad booty");
+			//Debug.Log ("I has mad booty");
 		}
 	}
 
