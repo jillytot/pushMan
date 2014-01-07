@@ -31,7 +31,8 @@ public class Adventurer : MonoBehaviour {
 	Rigidbody body; //an instance of the rigid body that can be acted upon (I think...)
 	//bool grounded = false; //Returns true if player is over an object (might use in the future for jumping)
 	//float tileSize = 2; //tile size is used for physics calculations
-	public bool mirrorMan; 
+	public bool mirrorMan;
+	public static Vector3 inputSignal;
 
 	void Awake() {
 
@@ -62,7 +63,7 @@ public class Adventurer : MonoBehaviour {
     void Update () {
 
 		//Creates movement in x and z directions.
-		var inputSignal = new Vector3(Input.GetAxisRaw("Horizontal"),0 ,Input.GetAxisRaw("Vertical"));
+		inputSignal = new Vector3(Input.GetAxisRaw("Horizontal"),0 ,Input.GetAxisRaw("Vertical"));
 
 		if (inputSignal.sqrMagnitude > 0.05f * 0.05f && mirrorMan == false) {
 
